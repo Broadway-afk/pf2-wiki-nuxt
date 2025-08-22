@@ -1,6 +1,10 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 
 export default defineNuxtConfig({
+  ssr: true,
+  routeRules: {
+    "/**": { cache: { maxAge: 60 * 60 } },
+  },
   compatibilityDate: '2025-07-15',
   devtools: { enabled: true },
   modules: ["@nuxt/eslint", "nuxt-quasar-ui"],
@@ -24,5 +28,10 @@ export default defineNuxtConfig({
         // primary: 'orange',
       },
     },
+  },
+  runtimeConfig: {
+    public: {
+      apiLocalUrl: process.env.NUXT_API_LOCAL_URL
+    }
   }
 })
