@@ -13,9 +13,12 @@ const correctList = computed(() => {
 <template>
   <q-card>
     <q-card-section>
-      <div class="text-h6">Тут будет название</div>
-      <div class="text-subtitle2">Источник: {{ props.info.Source }}</div>
-      <q-btn> Подробнее</q-btn>
+      <div class="text-h6">{{props.info.Title?.Title}}</div>
+      <div class="text-subtitle2">Источник: {{ props.info.Title?.Source }}</div>
+      <NuxtLink :to="`/races/${props.info.slug}`"><q-btn>Страница</q-btn></NuxtLink>
+      <q-btn v-if="!props.info.Title?.Legacy">Устаревшее</q-btn>
+      <q-btn>Таланты (черты)</q-btn>
+      <q-btn>Инстинкты</q-btn>
     </q-card-section>
 
     <q-separator dark></q-separator>

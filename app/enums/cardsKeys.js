@@ -9,11 +9,11 @@ export default [
     },
     {
         label: 'Имена',
-        name: 'Names',
+        name: 'ExamplesOfNames',
     },
     {
         label: 'Детали',
-        name: 'AdditionalDetails',
+        name: 'OtherInformation',
     },
     {
         label: 'Характеристики',

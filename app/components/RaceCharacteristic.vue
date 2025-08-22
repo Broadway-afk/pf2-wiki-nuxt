@@ -7,18 +7,20 @@ const liName = ref({
   "Speed": "Скорость",
   "StatIncreases": "Увеличение характеристик",
   "Languages": "Языки",
-  "LanguagesDesc": "Дополнительные языки"
+  "Vision": "Зрение"
 })
 </script>
 
 <template>
 <div>
-  <li v-for="(item, index) in Object.entries(props.info).filter((el) => el[0] !=='id')" :key="index">
-    {{liName[item[0]]}}: {{item[1]}}
-  </li>
+  <div class="race_parameters--block" v-for="(item, index) in Object.entries(props.info).filter((el) => el[0] !=='id' && el[1])" :key="index">
+    {{liName[item[0]]}}: <div v-html="item[1]"></div>
+  </div>
 </div>
 </template>
 
-<style scoped>
-
+<style>
+.race_parameters--block {
+  display: flex;
+}
 </style>

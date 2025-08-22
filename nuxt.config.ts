@@ -3,7 +3,7 @@
 export default defineNuxtConfig({
   ssr: true,
   routeRules: {
-    "/**": { cache: { maxAge: 60 * 60 } },
+    "/**": { cache: { maxAge: 0/*60 * 60*/ } },
   },
   compatibilityDate: '2025-07-15',
   devtools: { enabled: true },
@@ -30,8 +30,9 @@ export default defineNuxtConfig({
     },
   },
   runtimeConfig: {
+    cacheMaxAge: process.env.NUXT_API_ENV === 'development' ? 0 : 86400,
     public: {
-      apiLocalUrl: process.env.NUXT_API_LOCAL_URL
+      apiLocalUrl: process.env.NUXT_API_LOCAL_URL,
     }
   }
 })
