@@ -1,5 +1,5 @@
 const config = useRuntimeConfig()
-export default defineCachedEventHandler(async (event) => {
+export default defineCachedEventHandler(async () => {
     const res = await $fetch(`${config.public.apiLocalUrl}/races?fields=slug`)
     return res
 }, {

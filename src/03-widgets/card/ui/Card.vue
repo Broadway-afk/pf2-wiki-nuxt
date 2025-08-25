@@ -1,22 +1,22 @@
 <script setup lang="ts">
-import cardsKeys from '../enums/cardsKeys.js'
+import cardsKeys from 'shared/enums/cardsKeys'
+import {Characteristic} from "entities/card";
 
-const props = defineProps(['info'])
+const props = defineProps<{info: string }>()
 
-const listName = ref('Description')
-const correctList = computed(() => {
+const listName = ref<string>('Description')
+const correctList = computed<string | Record<string, unknown>>(() => {
   return props.info ? props.info[listName.value] : ''
 })
-
 </script>
 
 <template>
   <q-card>
     <q-card-section>
-      <div class="text-h6">{{props.info.Title?.Title}}</div>
-      <div class="text-subtitle2">Источник: {{ props.info.Title?.Source }}</div>
+      <div class="text-h6">{{props.info.Title.Title}}</div>
+      <div class="text-subtitle2">Источник: {{ props.info.Title.Source }}</div>
       <NuxtLink :to="`/races/${props.info.slug}`"><q-btn>Страница</q-btn></NuxtLink>
-      <q-btn v-if="!props.info.Title?.Legacy">Устаревшее</q-btn>
+      <q-btn v-if="!props.info.Title.Legacy">Устаревшее</q-btn>
       <q-btn>Таланты (черты)</q-btn>
       <q-btn>Инстинкты</q-btn>
     </q-card-section>
@@ -26,7 +26,7 @@ const correctList = computed(() => {
 
     <q-card-section v-if="listName !== 'Parameters'" v-html="correctList"/>
     <q-card-section v-else>
-      <RaceCharacteristic :info="correctList"/>
+      <Characteristic :info="correctList" />
     </q-card-section>
 
 
@@ -42,6 +42,6 @@ const correctList = computed(() => {
   </q-card>
 </template>
 
-<style>
+<style scoped>
 
 </style>

@@ -1,0 +1,1 @@
+export {default as Characteristic} from './ui/Characteristic.vue'
