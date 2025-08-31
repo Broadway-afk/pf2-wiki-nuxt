@@ -1,18 +1,20 @@
 <script setup lang="ts">
+import {Card} from "widgets/card";
+
 const route = useRoute();
 
 definePageMeta({
   async validate(route) {
     try {
       const validSlugs = await $fetch('/api/races/slugs');
-      return validSlugs.data.map((el) => el.slug).includes(route.params.name);
+      return validSlugs.data.map((el) => el.Slug).includes(route.params.name);
     } catch (error) {
       return false;
     }
   }
 });
 
-const { data, pending, error } = await useFetch(`/api/races/info?populate=*&filters[slug][$eq]=${route.params.name}`, {
+const { data, pending, error } = await useFetch(`/api/races/info?populate=*&filters[Slug][$eq]=${route.params.name}`, {
   server: true
 })
 
@@ -23,7 +25,7 @@ if (error.value) {
 
 <template>
 <div>
-  {{data}}
+  <Card v-for="race in data.data" :info="race" :key="race.id" />
 </div>
 </template>
 

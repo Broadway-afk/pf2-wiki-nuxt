@@ -12,7 +12,7 @@ const { data, error } = await useFetch(`/api/races/info?populate=*`, {
     <div v-if="error">
       Произошла ошибка: {{ error.message }}
     </div>
-    <div v-else>
+    <div class="q-ma-lg" v-else>
       <Card v-for="race in data.data" :info="race" :key="race.id" />
     </div>
   </div>

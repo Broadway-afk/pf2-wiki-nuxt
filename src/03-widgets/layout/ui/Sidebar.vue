@@ -24,7 +24,20 @@ const value = computed({
               <q-icon :name="menuItem.icon"></q-icon>
             </q-item-section>
             <q-item-section>
-              {{ menuItem.label }}
+              <q-btn-dropdown
+                  v-if="menuItem.btnList"
+                  :label="menuItem.label"
+                  :to="menuItem.url"
+                  auto-close
+                  split>
+                <q-list>
+                  <q-item clickable v-for="(el, index) in menuItem.btnList" :key="index">
+                    <q-item-section>
+                      {{el.label}}
+                    </q-item-section>
+                  </q-item>
+                </q-list>
+              </q-btn-dropdown>
             </q-item-section>
           </q-item>
           <q-separator :key="'sep' + index"  v-if="menuItem.separator"></q-separator>
